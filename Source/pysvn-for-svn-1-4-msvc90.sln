@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pysvn", "pysvn-for-svn-1-4-msvc90.vcproj", "{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generate_svn_error_codes", "generate_svn_error_codes\generate_svn_error_codes-1-4-msvc90.vcproj", "{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Profile|Win32 = Profile|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Debug|Win32.Build.0 = Debug|Win32
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Profile|Win32.ActiveCfg = Profile|Win32
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Profile|Win32.Build.0 = Profile|Win32
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Release|Win32.ActiveCfg = Release|Win32
+		{7C3CCB07-BFDC-4157-B5C8-5B6B3BCFCCB3}.Release|Win32.Build.0 = Release|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Debug|Win32.Build.0 = Debug|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Profile|Win32.ActiveCfg = Release|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Profile|Win32.Build.0 = Release|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Release|Win32.ActiveCfg = Release|Win32
+		{8CB7EE5D-223C-4C12-B797-D1BBEDECCDE4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
