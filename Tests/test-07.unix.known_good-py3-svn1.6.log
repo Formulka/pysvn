@@ -1,5 +1,5 @@
 WorkDir: /Users/barry/wc/svn/pysvn/Extension
-PYTHON: /Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python
+PYTHON: /Library/Frameworks/Python.framework/Versions/3.2/Resources/Python.app/Contents/MacOS/Python
 Username: barry
 Info: CWD: /Users/barry/wc/svn/pysvn/Extension/Tests
 Info: Command: mkdir testroot-07
@@ -7,7 +7,7 @@ Info: CWD: /Users/barry/wc/svn/pysvn/Extension/Tests
 Info: Command: cd testroot-07
 Info: CWD: /Users/barry/wc/svn/pysvn/Extension/Tests/testroot-07
 Info: Command: mkdir tmp
-Info: PYSVN command /Library/Frameworks/Python.framework/Versions/2.6/Resources/Python.app/Contents/MacOS/Python /Users/barry/wc/svn/pysvn/Extension/Examples/Client/svn_cmd.py --pysvn-testing 01.05.00 --config-dir /Users/barry/wc/svn/pysvn/Extension/Tests/testroot-07/configdir
+Info: PYSVN command /Library/Frameworks/Python.framework/Versions/3.2/Resources/Python.app/Contents/MacOS/Python /Users/barry/wc/svn/pysvn/Extension/Examples/Client/svn_cmd.py --pysvn-testing 01.05.00 --config-dir /Users/barry/wc/svn/pysvn/Extension/Tests/testroot-07/configdir
 Info: CWD: /Users/barry/wc/svn/pysvn/Extension/Tests/testroot-07
 Info: Command: svnadmin create /Users/barry/wc/svn/pysvn/Extension/Tests/testroot-07/repos
 Info: Setup - mkdir
@@ -74,15 +74,15 @@ Info: Error: 'Operation does not support multiple sources'
 Info: Code: 195014, Message: 'Operation does not support multiple sources'
 Info: running test_07_changelist
 After add_to_changelist show all
+   changelist-one file_a1.txt
    changelist-two file_a2.txt
    changelist-one file_b1.txt
    changelist-two file_b2.txt
-   changelist-one file_a1.txt
 After add_to_changelist show changelist-two
    changelist-two file_a2.txt
    changelist-two file_b2.txt
 After remove_from_changelists all changelist-two show all
-   changelist-one file_b1.txt
    changelist-one file_a1.txt
+   changelist-one file_b1.txt
 After remove_from_changelists all show all
    changelist-one file_b1.txt

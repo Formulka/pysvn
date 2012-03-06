@@ -1,11 +1,11 @@
-WorkDir: C:\wc\pysvn\trunk\pysvn\Extension
-PYTHON: c:\python26\python.exe
+WorkDir: C:\wc\svn\pysvn\Extension
+PYTHON: c:\python27.win32\python.exe
 Username: barry
-Info: PYSVN CMD c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.03.00 --config-dir b:\configdir
+Info: PYSVN CMD c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.03.00 --config-dir b:\configdir
 
 Info: CMD mkdir testroot-05
 
-Info: CMD subst b: C:\wc\pysvn\trunk\pysvn\Extension\Tests\testroot-05
+Info: CMD subst b: C:\wc\svn\pysvn\Extension\Tests\testroot-05
 
 Info: CMD cd /d b:\
 
@@ -34,8 +34,8 @@ Info: PYSVN CMD add file2.txt
 A file2.txt
 
 Info: PYSVN CMD checkin -m "commit added files"
-A B:/wc1/test/file1.txt
-A B:/wc1/test/file2.txt
+A b:/wc1/test/file1.txt
+A b:/wc1/test/file2.txt
 Revision 3
 Info: Setup - checkout wc2
 
@@ -60,13 +60,13 @@ Path: b:/wc1/test/file1.txt
 Url: file:///B:/repos/trunk/test/file1.txt
 Revision: 3
 Repository root_URL: file:///B:/repos
-Repository UUID: 10d6108c-ddd6-2142-a5a0-48c29f581f6f
+Repository UUID: e3fc991c-be68-a646-aad7-03fed51bb128
 Last changed author: barry
-Last Changed Date: 05-Apr-2009 15:44:51
+Last Changed Date: 28-Feb-2012 12:55:39
 Last changed revision: 3
 Node kind: file
 Schedule: normal
-Text Last Updated: 05-Apr-2009 15:44:50
+Text Last Updated: 28-Feb-2012 12:55:38
 Checksum: 1e41522fd7b6b6325667c8554893a6db
 Info: Test - lock unlocked file
 
@@ -87,17 +87,17 @@ Path: b:/wc1/test/file1.txt
 Url: file:///B:/repos/trunk/test/file1.txt
 Revision: 3
 Repository root_URL: file:///B:/repos
-Repository UUID: 10d6108c-ddd6-2142-a5a0-48c29f581f6f
+Repository UUID: e3fc991c-be68-a646-aad7-03fed51bb128
 Last changed author: barry
-Last Changed Date: 05-Apr-2009 15:44:51
+Last Changed Date: 28-Feb-2012 12:55:39
 Last changed revision: 3
 Node kind: file
 Lock Owner: barry
-Lock Creation Date: 05-Apr-2009 15:44:54
-Lock Token: opaquelocktoken:772f2dd4-3fad-6342-8082-8b92895fca13
+Lock Creation Date: 28-Feb-2012 12:55:40
+Lock Token: opaquelocktoken:df9c8d78-afcf-0746-8912-9b4587a68aed
 Lock Comment:
 Schedule: normal
-Text Last Updated: 05-Apr-2009 15:44:50
+Text Last Updated: 28-Feb-2012 12:55:38
 Checksum: 1e41522fd7b6b6325667c8554893a6db
 Info: Test - attempt to checkin over a locked file
 
@@ -106,8 +106,8 @@ Info: Append File file1.txt - Change to file 1
 Info: Append File file2.txt - Change to file 2     
 
 Info: PYSVN CMD commit -m "change when file locked in other wc" .
-M B:/wc2/test/file1.txt
-M B:/wc2/test/file2.txt
+M b:/wc2/test/file1.txt
+M b:/wc2/test/file2.txt
 Commit failed (details follow):
 Cannot verify lock on path '/trunk/test/file1.txt'; no matching lock-token available
 Info: Test - lock locked file
@@ -126,18 +126,18 @@ Path: b:/wc2/test/file1.txt
 Url: file:///B:/repos/trunk/test/file1.txt
 Revision: 3
 Repository root_URL: file:///B:/repos
-Repository UUID: 10d6108c-ddd6-2142-a5a0-48c29f581f6f
+Repository UUID: e3fc991c-be68-a646-aad7-03fed51bb128
 Last changed author: barry
-Last Changed Date: 05-Apr-2009 15:44:51
+Last Changed Date: 28-Feb-2012 12:55:39
 Last changed revision: 3
 Node kind: file
 Lock Owner: barry
-Lock Creation Date: 05-Apr-2009 15:44:56
-Lock Token: opaquelocktoken:68bbe0e0-7072-7b4c-b3c4-d5eda97a6e64
+Lock Creation Date: 28-Feb-2012 12:55:41
+Lock Token: opaquelocktoken:6f7bc6be-f992-f642-a7f0-f1b0b195c75b
 Lock Comment:
 Stealing lock
 Schedule: normal
-Text Last Updated: 05-Apr-2009 15:44:52
+Text Last Updated: 28-Feb-2012 12:55:39
 Checksum: 1e41522fd7b6b6325667c8554893a6db
 Info: Test - status of locked files
 
@@ -149,8 +149,8 @@ M              3      3 barry          b:\wc2\test\file2.txt
 Info: Test - commit with lock
 
 Info: PYSVN CMD commit -m "change when file locked in this wc" .
-M B:/wc2/test/file1.txt
-M B:/wc2/test/file2.txt
+M b:/wc2/test/file1.txt
+M b:/wc2/test/file2.txt
 Revision 4
 Info: Test - status of locked files
 
@@ -200,8 +200,8 @@ Path: file1.txt
 Url: file:///B:/repos/trunk/test/file1.txt
 Revision: 4
 Repository root_URL: file:///B:/repos
-Repository UUID: 10d6108c-ddd6-2142-a5a0-48c29f581f6f
+Repository UUID: e3fc991c-be68-a646-aad7-03fed51bb128
 Last changed author: barry
-Last Changed Date: 05-Apr-2009 15:44:58
+Last Changed Date: 28-Feb-2012 12:55:42
 Last changed revision: 4
 Node kind: file

@@ -18,13 +18,14 @@ import setup_backport
 
 def main( argv ):
     if argv[1:2] == ['backport']:
-        return setup_backport.cmd_backport( argv )
+        if setup_backport.backportRequired():
+            return setup_backport.cmd_backport( argv )
+        else:
+            print( 'Info: These sources are compatible with python %d.%d - no need to run the backport command' %
+                (sys.version_info[0], sys.version_info[1]) )
+            return 0
 
     elif argv[1:2] == ['configure']:
-        if sys.platform == 'win32':
-            print( 'Error: configure only Works for Unix like systems' )
-            return 1
-
         if setup_backport.backportRequired():
             print( 'Error: These sources are not compatible with python %d.%d - run the backport command to fix' %
                 (sys.version_info[0], sys.version_info[1]) )

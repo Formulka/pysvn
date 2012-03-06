@@ -1,56 +1,56 @@
-WorkDir: C:\wc\pysvn\trunk\pysvn\Extension
-PYTHON: c:\python26\python.exe
+WorkDir: C:\wc\svn\pysvn\Extension
+PYTHON: c:\python27.win32\python.exe
 Username: barry
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > setlocal
+C:\wc\svn\pysvn\Extension\Tests > setlocal
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > set PYTHONPATH=C:\wc\pysvn\trunk\pysvn\Extension\Source;C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client 
+C:\wc\svn\pysvn\Extension\Tests > set PYTHONPATH=C:\wc\svn\pysvn\Extension\Source;C:\wc\svn\pysvn\Extension\Examples\Client 
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > set PYSVN=c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir 
+C:\wc\svn\pysvn\Extension\Tests > set PYSVN=c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir 
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > mkdir testroot-04 
+C:\wc\svn\pysvn\Extension\Tests > mkdir testroot-04 
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > subst b: C:\wc\pysvn\trunk\pysvn\Extension\Tests\testroot-04 
+C:\wc\svn\pysvn\Extension\Tests > subst b: C:\wc\svn\pysvn\Extension\Tests\testroot-04 
 
-C:\wc\pysvn\trunk\pysvn\Extension\Tests > cd /d b:\ 
+C:\wc\svn\pysvn\Extension\Tests > cd /d B:\ 
 
 B:\ > svnadmin create b:\repos 
 
 B:\ > rem mkdir 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk -m "test-01 add trunk" 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk -m "test-01 add trunk" 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk/test -m "test-01 add test" 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk/test -m "test-01 add test" 
 
 B:\ > rem Install hooks 
 
-B:\ > echo echo c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* >b:\pre_test_1.output  1>>b:\repos\hooks\pre-commit.cmd 
+B:\ > echo echo c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* >b:\pre_test_1.output  1>>b:\repos\hooks\pre-commit.cmd 
 
-B:\ > echo set PYTHONPATH=C:\wc\pysvn\trunk\pysvn\Extension\Source;C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client  1>>b:\repos\hooks\pre-commit.cmd 
+B:\ > echo set PYTHONPATH=C:\wc\svn\pysvn\Extension\Source;C:\wc\svn\pysvn\Extension\Examples\Client  1>>b:\repos\hooks\pre-commit.cmd 
 
-B:\ > echo c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* >>b:\pre_test_1.output  1>>b:\repos\hooks\pre-commit.cmd 
+B:\ > echo c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* >>b:\pre_test_1.output  1>>b:\repos\hooks\pre-commit.cmd 
 
-B:\ > echo echo c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* is_revision >b:\post_test_1.output  1>>b:\repos\hooks\post-commit.cmd 
+B:\ > echo echo c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* is_revision >b:\post_test_1.output  1>>b:\repos\hooks\post-commit.cmd 
 
-B:\ > echo set PYTHONPATH=C:\wc\pysvn\trunk\pysvn\Extension\Source;C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client  1>>b:\repos\hooks\post-commit.cmd 
+B:\ > echo set PYTHONPATH=C:\wc\svn\pysvn\Extension\Source;C:\wc\svn\pysvn\Extension\Examples\Client  1>>b:\repos\hooks\post-commit.cmd 
 
-B:\ > echo c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* is_revision >>b:\post_test_1.output  1>>b:\repos\hooks\post-commit.cmd 
+B:\ > echo c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py %* is_revision >>b:\post_test_1.output  1>>b:\repos\hooks\post-commit.cmd 
 
 B:\ > rem Add one dir 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk/test/a -m "pre-commit test 1" 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir mkdir file:///b:/repos/trunk/test/a -m "pre-commit test 1" 
 
 B:\ > rem pre_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\pre_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 2-2  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 2-2  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 2-2) ...
 Info: revproplist() ...
 svn:log: pre-commit test 1
 svn:check-locks: true
 svn:author: barry
-svn:date: 2010-12-28T14:01:50.944318Z
+svn:date: 2012-02-28T12:55:00.790899Z
 Info: changed() ...
 trunk/test/a: action='A', kind=<node_kind.dir>, text_mod=0, prop_mod=0
 Info: changed( copy_info=True ) ...
@@ -65,13 +65,13 @@ B:\ > rem  pre_test_1.output end ------------------------------------------
 B:\ > rem post_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\post_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 3 is_revision  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 3 is_revision  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 3, is_revision=True) ...
 Info: revproplist() ...
 svn:log: pre-commit test 1
 svn:author: barry
-svn:date: 2010-12-28T14:01:51.288054Z
+svn:date: 2012-02-28T12:55:01.102893Z
 Info: changed() ...
 trunk/test/a: action='A', kind=<node_kind.dir>, text_mod=0, prop_mod=0
 Info: changed( copy_info=True ) ...
@@ -85,7 +85,7 @@ B:\ > rem  post_test_1.output end ------------------------------------------
 
 B:\ > rem Add two files 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir co file:///b:/repos/trunk/test b:\wc 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir co file:///b:/repos/trunk/test b:\wc 
 A b:/wc/a
 U b:/wc
 Checked out revision 3
@@ -94,13 +94,13 @@ B:\ > echo file1 ROOT  1>b:\wc\file1.txt
 
 B:\ > echo file1 A  1>b:\wc\a\file1.txt 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir add b:\wc\file1.txt 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir add b:\wc\file1.txt 
 A b:/wc/file1.txt
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir add b:\wc\a\file1.txt 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir add b:\wc\a\file1.txt 
 A b:/wc/a/file1.txt
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Add two files" b:\wc 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Add two files" b:\wc 
 A B:/wc/a/file1.txt
 A B:/wc/file1.txt
 Revision 4
@@ -108,14 +108,14 @@ Revision 4
 B:\ > rem pre_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\pre_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 3-3  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 3-3  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 3-3) ...
 Info: revproplist() ...
 svn:log: Add two files
 svn:check-locks: true
 svn:author: barry
-svn:date: 2010-12-28T14:01:52.866119Z
+svn:date: 2012-02-28T12:55:02.319669Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='A', kind=<node_kind.file>, text_mod=1, prop_mod=0
      contents: 'file1 A \r\n'
@@ -138,13 +138,13 @@ B:\ > rem  pre_test_1.output end ------------------------------------------
 B:\ > rem post_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\post_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 4 is_revision  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 4 is_revision  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 4, is_revision=True) ...
 Info: revproplist() ...
 svn:log: Add two files
 svn:author: barry
-svn:date: 2010-12-28T14:01:53.319226Z
+svn:date: 2012-02-28T12:55:02.740861Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='A', kind=<node_kind.file>, text_mod=1, prop_mod=0
      contents: 'file1 A \r\n'
@@ -168,10 +168,10 @@ B:\ > rem Mod one file Mod one prop
 
 B:\ > echo file1 ROOT ln 2  1>b:\wc\file1.txt 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir propset svn:eol-style native b:\wc\a\file1.txt 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir propset svn:eol-style native b:\wc\a\file1.txt 
 property_added b:/wc/a/file1.txt
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Mod one file Mod one prop" b:\wc 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Mod one file Mod one prop" b:\wc 
 M B:/wc/a/file1.txt
 M B:/wc/file1.txt
 Revision 5
@@ -179,14 +179,14 @@ Revision 5
 B:\ > rem pre_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\pre_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 4-4  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 4-4  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 4-4) ...
 Info: revproplist() ...
 svn:log: Mod one file Mod one prop
 svn:check-locks: true
 svn:author: barry
-svn:date: 2010-12-28T14:01:54.366061Z
+svn:date: 2012-02-28T12:55:03.411648Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='R', kind=<node_kind.file>, text_mod=1, prop_mod=1
      svn:eol-style: native
@@ -211,13 +211,13 @@ B:\ > rem  pre_test_1.output end ------------------------------------------
 B:\ > rem post_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\post_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 5 is_revision  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 5 is_revision  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 5, is_revision=True) ...
 Info: revproplist() ...
 svn:log: Mod one file Mod one prop
 svn:author: barry
-svn:date: 2010-12-28T14:01:54.912915Z
+svn:date: 2012-02-28T12:55:03.754842Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='R', kind=<node_kind.file>, text_mod=1, prop_mod=1
      svn:eol-style: native
@@ -241,24 +241,24 @@ B:\ > rem  post_test_1.output end ------------------------------------------
 
 B:\ > rem Delete one file 
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir rm b:\wc\a\file1.txt 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir rm b:\wc\a\file1.txt 
 D b:/wc/a/file1.txt
 
-B:\ > c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Delete one file" b:\wc 
+B:\ > c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.02.01 --config-dir b:\configdir checkin -m "Delete one file" b:\wc 
 D B:/wc/a/file1.txt
 Revision 6
 
 B:\ > rem pre_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\pre_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 5-5  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 5-5  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 5-5) ...
 Info: revproplist() ...
 svn:log: Delete one file
 svn:check-locks: true
 svn:author: barry
-svn:date: 2010-12-28T14:01:56.006623Z
+svn:date: 2012-02-28T12:55:04.534827Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='D', kind=<node_kind.file>, text_mod=0, prop_mod=0
 Info: changed( copy_info=True ) ...
@@ -274,13 +274,13 @@ B:\ > rem  pre_test_1.output end ------------------------------------------
 B:\ > rem post_test_1.output start ---------------------------------------- 
 
 B:\ > type b:\post_test_1.output 
-c:\python26\python.exe C:\wc\pysvn\trunk\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 6 is_revision  
+c:\python27.win32\python.exe C:\wc\svn\pysvn\Extension\Tests\test_04_commit_hook_test_1.py B:\repos 6 is_revision  
 Info: pre commit test 1
 Info: Transaction( B:\repos, 6, is_revision=True) ...
 Info: revproplist() ...
 svn:log: Delete one file
 svn:author: barry
-svn:date: 2010-12-28T14:01:56.459731Z
+svn:date: 2012-02-28T12:55:04.862420Z
 Info: changed() ...
 trunk/test/a/file1.txt: action='D', kind=<node_kind.file>, text_mod=0, prop_mod=0
 Info: changed( copy_info=True ) ...

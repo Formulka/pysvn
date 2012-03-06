@@ -31,11 +31,15 @@ span.svn_example {display: inline; }
 </style>
 
 <style id="show_style" type="text/css">
+span.svn_1007000 {display: inline; }
+span.svn_1006000 {display: inline; }
 span.svn_1005000 {display: inline; }
 span.svn_1004000 {display: inline; }
 span.svn_1003000 {display: inline; }
 span.svn_1002000 {display: inline; }
 span.svn_1001000 {display: inline; }
+div.svn_1007000 {display: block; }
+div.svn_1006000 {display: block; }
 div.svn_1005000 {display: block; }
 div.svn_1004000 {display: block; }
 div.svn_1003000 {display: block; }
@@ -65,6 +69,7 @@ only available with SVN 1.6.0 or later.
 <p>Click one of the buttons below to show the pysvn API as supported
 by a particular version of the SVN.</p>
 <div id="buttons_work" style="display: none">
+<span class="button" onclick='changeDisplay( 1007000 )'>Show SVN 1.7.0 API</span>
 <span class="button" onclick='changeDisplay( 1006000 )'>Show SVN 1.6.0 API</span>
 <span class="button" onclick='changeDisplay( 1005000 )'>Show SVN 1.5.0 API</span>
 <span class="button" onclick='changeDisplay( 1004000 )'>Show SVN 1.4.0 API</span>
@@ -216,6 +221,8 @@ and credential handling.
 <p><a href="#pysvn_client_callback_get_login">callback_get_login</a> is called to get a username and password to access a repository.
 </p>
 <p><a href="#pysvn_client_callback_ssl_server_trust_prompt">callback_ssl_server_trust_prompt</a> is called when using HTTPS to a server whoes certificate needs is trust verifing.
+</p>
+<p><a href="#pysvn_client_callback_conflict_resolver">callback_conflict_resolver</a> is called to handle conflicts.
 </p>
 <p>It is possible to use the Client object without setting up any
 calls backs. Make sure that all nessesary usernames, passwords and
@@ -431,6 +438,50 @@ a tuple of three values (retcode, accepted_failures, save).
   to prevent saving the certificate.</li>
 </ul>
 
+
+<h4><a name="pysvn_client_callback_conflict_resolver"><a href="#pysvn_module">pysvn</a>.<a href="#pysvn_client">Client</a>.callback_conflict_resolver</a></h4>
+<pre>
+import pysvn
+
+def conflict_resolver( conflict_description ):
+    return conflict_choice, merge_file, save_merged
+
+client = pysvn.Client()
+client.callback_conflict_resolver = conflict_resolver
+</pre>
+
+<p>The callback_conflict_resolver is called each time a conflict needs resolving.
+It is passed the conflict_description and must return a conflict_choice, merge_file and save_merged.
+</p>
+
+<p>The members of the conflict_description dictionary are:</p>
+<ul>
+<li>path - string - The path that is in conflict (for a tree conflict, it is the victim)</li>
+<li>node_kind - pysvn.node_kind - The node type of the path being operated on</li>
+<li>kind - pysvn.conflict_kind - the sort of conflict being described</li>
+<li>property_name - string or None - The name of the property whose conflict is being described.
+     (Only if kind is 'property'; else undefined.)</li>
+<li>is_binary - boolean - Whether svn thinks ('my' version of) path is a 'binary' file.
+    (Only if kind is 'text', else undefined.)</li>
+<li>mime_type - string or None - The svn:mime-type property of ('my' version of) path</li>
+<li>action - pysvn.wc_conflict_action - the action being attempted on the conflicted node or property</li>
+<li>reason - pysvn.wc_conflict_reason - The state of the target node or property, relative to its merge-left
+   source, that is the reason for the conflict</li>
+<li>base_file - string - common ancestor of the two files being merged</li>
+<li>their_file - string - their version of the file</li>
+<li>my_file - string - my locally-edited version of the file</li>
+<li>merged_file - string - merged version; may contain conflict markers</li>
+<li>operation - pysvn.wc_operation - the operation that exposed the conflict. Used only for tree conflicts</li>
+<li>src_left_version - pysvn.wc_conflict_version - Info on the "merge-left source" or "older" version of incoming change</li>
+<li>src_right_version - pysvn.wc_conflict_version - Info on the "merge-right source" or "their" version of incoming change</li>
+</ul>
+
+<ul>
+<li>conflict_choice is one of the pysvn.wc_conflict_choice values</li>
+<li>merge_file is a file name or None</li>
+<li>save_merged is True or False</li>
+</ul>
+
 <h3><a name="pysvn_client_methods">Client methods</a></h3>
 
 <table border="0" cellspacing="0" cellpadding="5">
@@ -518,7 +569,7 @@ a tuple of three values (retcode, accepted_failures, save).
 <td><a href="#pysvn_client_switch">switch</a></td>
 <td><span class="svn_1002000"><a href="#pysvn_client_unlock">unlock</a></span></td>
 <td><a href="#pysvn_client_update">update</a></td>
-<td>&nbsp;</td>
+<td><span class="svn_1007000"><a href="#pysvn_client_upgrade">upgrade</a></span></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
@@ -2050,6 +2101,15 @@ current revision. To make the current version identical to
 an older revision, use a merge followed by a commit.
 </p>
 
+<div class="svn_1007000">
+<h4><a name="pysvn_client_upgrade"><a href="#pysvn_module">pysvn</a>.<a href="#pysvn_client">Client</a>.upgrade</a></h4>
+<pre>
+upgrade( path )
+</pre>
+<p>Recursively upgrade a working copy from any older format to the current
+ WC metadata storage format.  path is the path to the WC root.
+</p>
+</div>
 
 <h2><a name="pysvn_transaction"><a href="#pysvn_module">pysvn</a>.Transaction - Subversion transaction interface</a></h2>
 
@@ -2367,8 +2427,8 @@ except pysvn.ClientError, e:
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_opt_revision_kind">opt_revision_kind - subversion
-	revision number kind enumeration</a></h2>
+        name="pysvn_opt_revision_kind">opt_revision_kind - subversion
+        revision number kind enumeration</a></h2>
 <ul>
 <li>unspecified - No revision information given.</li>
 <li>number - revision given as number</li>
@@ -2381,8 +2441,8 @@ except pysvn.ClientError, e:
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_wc_notify_action">wc_notify_action - subversion
-	notification callback action enumeration</a></h2>
+        name="pysvn_wc_notify_action">wc_notify_action - subversion
+        notification callback action enumeration</a></h2>
 <ul>
 <li>add - Adding a path to revision control.</li>
 <li>copy - Copying a versioned path.</li>
@@ -2412,8 +2472,8 @@ except pysvn.ClientError, e:
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_wc_status_kind">wc_status_kind - subversion
-	status kind enumeration</a></h2>
+        name="pysvn_wc_status_kind">wc_status_kind - subversion
+        status kind enumeration</a></h2>
 <ul>
 <li>none - does not exist</li>
 <li>unversioned - is not a versioned thing in this wc</li>
@@ -2432,8 +2492,8 @@ except pysvn.ClientError, e:
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_wc_merge_outcome">wc_merge_outcome - subversion
-	merge outcome enumeration</a></h2>
+        name="pysvn_wc_merge_outcome">wc_merge_outcome - subversion
+        merge outcome enumeration</a></h2>
 <ul>
 <li>unchanged - The working copy is (or would be) unchanged.
 The changes to be merged were already present in the working copy</li>
@@ -2445,8 +2505,8 @@ file was either absent or not under version control.</li>
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_wc_notify_state">wc_notify_state - subversion
-	notify callback state enumeration</a></h2>
+        name="pysvn_wc_notify_state">wc_notify_state - subversion
+        notify callback state enumeration</a></h2>
 <ul>
 <li>inapplicable - inapplicable</li>
 <li>unknown - Notifier doesn't know or isn't saying.</li>
@@ -2459,7 +2519,7 @@ file was either absent or not under version control.</li>
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_wc_schedule">wc_schedule - subversion status schedule enumeration</a></h2>
+        name="pysvn_wc_schedule">wc_schedule - subversion status schedule enumeration</a></h2>
 <ul>
 <li>normal - Nothing special here</li>
 <li>add - Slated for addition</li>
@@ -2468,7 +2528,7 @@ file was either absent or not under version control.</li>
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_node_kind">node_kind - subversion node kind enumeration</a></h2>
+        name="pysvn_node_kind">node_kind - subversion node kind enumeration</a></h2>
 <ul>
 <li>none - absent</li>
 <li>file - regular file</li>
@@ -2477,7 +2537,7 @@ file was either absent or not under version control.</li>
 </ul>
 
 <h2><a href="#pysvn_module">pysvn</a>.<a
-	name="pysvn_depth">depth - subversion depth enumeration</a></h2>
+        name="pysvn_depth">depth - subversion depth enumeration</a></h2>
 <ul>
 <li>empty - Just the named directory D, no entries.  Updates will not pull in
      any files or subdirectories not already present.</li>

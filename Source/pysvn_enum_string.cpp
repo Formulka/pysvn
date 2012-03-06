@@ -1,6 +1,6 @@
 //
 // ====================================================================
-// Copyright (c) 2003-2009 Barry A Scott.  All rights reserved.
+// Copyright (c) 2003-2011 Barry A Scott.  All rights reserved.
 //
 // This software is licensed as described in the file LICENSE.txt,
 // which you should have received as part of this distribution.
@@ -144,6 +144,32 @@ template <> EnumString< svn_wc_notify_action_t >::EnumString()
     add( svn_wc_notify_merge_completed, "merge_completed" );
     add( svn_wc_notify_tree_conflict, "tree_conflict" );
     add( svn_wc_notify_failed_external, "failed_external" );
+#endif
+#if defined( PYSVN_HAS_SVN_1_7 )
+    add( svn_wc_notify_update_started, "update_started" );
+    add( svn_wc_notify_update_skip_obstruction, "update_skip_obstruction" );
+    add( svn_wc_notify_update_skip_working_only, "update_skip_working_only" );
+    add( svn_wc_notify_update_external_removed, "update_external_removed" );
+    add( svn_wc_notify_update_shadowed_add, "update_shadowed_add" );
+    add( svn_wc_notify_update_shadowed_update, "update_shadowed_update" );
+    add( svn_wc_notify_update_shadowed_delete, "update_shadowed_delete" );
+    add( svn_wc_notify_merge_record_info, "merge_record_info" );
+    add( svn_wc_notify_upgraded_path, "upgraded_path" );
+    add( svn_wc_notify_merge_record_info_begin, "merge_record_info_begin" );
+    add( svn_wc_notify_merge_elide_info, "merge_elide_info" );
+    add( svn_wc_notify_patch, "patch" );
+    add( svn_wc_notify_patch_applied_hunk, "patch_applied_hunk" );
+    add( svn_wc_notify_patch_rejected_hunk, "patch_rejected_hunk" );
+    add( svn_wc_notify_patch_hunk_already_applied, "patch_hunk_already_applied" );
+    add( svn_wc_notify_commit_copied, "commit_copied" );
+    add( svn_wc_notify_commit_copied_replaced, "commit_copied_replaced" );
+    add( svn_wc_notify_url_redirect, "url_redirect" );
+    add( svn_wc_notify_path_nonexistent, "path_nonexistent" );
+    add( svn_wc_notify_exclude, "exclude" );
+    add( svn_wc_notify_failed_conflict, "failed_conflict" );
+    add( svn_wc_notify_failed_missing, "failed_missing" );
+    add( svn_wc_notify_failed_out_of_date, "failed_out_of_date" );
+    add( svn_wc_notify_failed_no_parent, "failed_no_parent" );
 #endif
 
 }

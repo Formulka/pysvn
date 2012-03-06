@@ -37,6 +37,10 @@ pysvn_context::pysvn_context( const std::string &config_dir )
 #if defined( PYSVN_HAS_CONTEXT_PROGRESS )
 , m_pyfn_Progress()
 #endif
+#if defined( PYSVN_HAS_SVN_CLIENT_CTX_T__CONFLICT_FUNC )
+, m_pyfn_ConflictResolver()
+#endif
+, m_pyfn_Cancel()
 , m_pyfn_GetLogMessage()
 , m_pyfn_SslServerPrompt()
 , m_pyfn_SslServerTrustPrompt()

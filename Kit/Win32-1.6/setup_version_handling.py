@@ -1,8 +1,10 @@
 print( 'Info: setup_version_handling.py' )
 import sys
+import time
+import os
+
 sys.path.insert( 0, '..\\..\\Source')
 import pysvn
-import time
 
 py_maj = sys.version_info[0]
 py_min = sys.version_info[1]
@@ -35,42 +37,41 @@ f.close()
 
 f = open( 'tmp\\pysvn-branded.iss', 'w' )
 branding = {
-	'py_maj': py_maj,
-	'py_min': py_min,
-	'pysvn_version_string': pysvn_version_string,
-	}
+        'py_maj': py_maj,
+        'py_min': py_min,
+        'pysvn_version_string': pysvn_version_string,
+        }
 print( 'Info: %r' % (branding,) )
 f.write( pysvn_iss_text % branding )
 f.close()
+
+all_dlls = [dll for dll in os.listdir( 'tmp' ) if dll.lower().endswith( '.dll' )]
+
+
+msvc90_dlls = [
+    R'c:\Program Files (x86)\Microsoft Visual Studio 9.0\vc\redist\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest',
+    R'c:\Program Files (x86)\Microsoft Visual Studio 9.0\vc\redist\x86\Microsoft.VC90.CRT\msvcm90.dll',
+    R'c:\Program Files (x86)\Microsoft Visual Studio 9.0\vc\redist\x86\Microsoft.VC90.CRT\msvcp90.dll',
+    R'c:\Program Files (x86)\Microsoft Visual Studio 9.0\vc\redist\x86\Microsoft.VC90.CRT\msvcr90.dll',
+    ]
 
 if py_maj == 3:
-    msvc_system_files_iss = 'msvc90_system_files.iss'
+    all_dlls.extend( msvc90_dlls )
 
 elif py_maj == 2 and py_min >= 6:
-    msvc_system_files_iss = 'msvc90_system_files.iss'
+    all_dlls.extend( msvc90_dlls )
 
 else:
-    msvc_system_files_iss = 'msvc71_system_files.iss'
+    raise RuntimeError( 'Unsupport python version' )
 
-
-
-print( 'Info: Creating %s from pysvn.iss' % msvc_system_files_iss )
-f = open( msvc_system_files_iss, 'r' )
-pysvn_iss_text = f.read()
-f.close()
-
-f = open( 'tmp\\msvc_system_files.iss', 'w' )
-branding = {
-	'py_maj': py_maj,
-	'py_min': py_min,
-	'pysvn_version_string': pysvn_version_string,
-	}
-print( 'Info: %r' % (branding,) )
-f.write( pysvn_iss_text % branding )
+print( 'Info: Creating system_files.iss' )
+f = open( 'tmp\\system_files.iss', 'w' )
+for dll in all_dlls:
+    f.write( 'Source: "%s"; DestDir: "{app}"; Flags: ignoreversion\n' % (dll,) )
 f.close()
 
 print( 'Info: Create setup_copy.cmd' )
 f = open( 'tmp\\setup_copy.cmd', 'w' )
 f.write( 'copy tmp\\Output\\setup.exe tmp\\Output\\py%d%d-pysvn-svn%s-%s.exe\n' %
-	(py_maj, py_min, svn_version_package_string, pysvn_version_string) )
+        (py_maj, py_min, svn_version_package_string, pysvn_version_string) )
 f.close()

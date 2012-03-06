@@ -35,9 +35,6 @@ call :cmd_pysvn info file1.txt
 echo Info: Test - info2 of path
 call :cmd_pysvn info2 file1.txt
 
-echo Info: Test - info of URL
-call :cmd_pysvn info --revision HEAD file:///b:/repos/trunk/test/file1.txt
-
 echo Info: Test - info2 of URL
 call :cmd_pysvn info2 --revision HEAD file:///b:/repos/trunk/test/file1.txt
 

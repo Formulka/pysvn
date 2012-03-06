@@ -1,12 +1,12 @@
 BUILD_TYPE=Release
-SVN_VER_MAJ_MIN=1.6
+SVN_VER_MAJ_MIN=1.7
 
 VCBUILD_OPT=/useenv /nologo /nocolor "/info:Info: " "/error:Error: " "/warning:Warn: "
 
 build: all test kit
 
 all:
-	cd ..\Source & vcbuild /rebuild $(VCBUILD_OPT) pysvn-for-svn-$(SVN_VER_MAJ_DASH_MIN)-msvc90.sln "Release|Win32"
+	cd ..\Source & $(PYTHON) setup.py configure vcbuild /rebuild $(VCBUILD_OPT) pysvn-for-svn-$(SVN_VER_MAJ_DASH_MIN)-msvc90.sln "Release|Win32"
 
 
 clean:

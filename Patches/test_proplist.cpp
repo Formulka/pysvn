@@ -91,8 +91,8 @@ static int elapse_time()
     if( need_init_elapse_time )
     {
         gettimeofday( &start_time, NULL );
-	start_time.tv_usec = 0;
-	need_init_elapse_time = false;
+        start_time.tv_usec = 0;
+        need_init_elapse_time = false;
     }
     timeval now;
     gettimeofday( &now, NULL );

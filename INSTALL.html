@@ -17,39 +17,48 @@ code {background-color: #dddddd; }
 
 <p>To build pysvn you will require:</p>
 <ul>
-<li><a href="http://www.python.org">Python</a> 2.2 or later with these options:
+<li><a href="http://www.python.org">Python</a> 2.6 or later with these options:
 <ul>
 <li>Python runtime package
 <li>Python development package
 <li>Python pyexpat package
 </ul>
 </li>
-<li><a href="http://subversion.tigris.org">subversion</a> 1.5.x or 1.6.x with these options:
+<li><a href="http://subversion.tigris.org">subversion</a> 1.6.x or 1.7.x with these options:
 <ul>
 <li>Subversion client package
 <li>Subversion development package
 </ul>
 </li>
-<li><a href="http://sourceforge.net/project/showfiles.php?group_id=3180">PyCXX V6.2.2</a> to build against Python 2 or Python 3 which is included in the pysvn source kit.</li>
+<li><a href="http://sourceforge.net/project/showfiles.php?group_id=3180">PyCXX V6.2.4</a> to build against Python 2 or Python 3 which is included in the pysvn source kit.</li>
 </ul>
 <p>Some distributions will split python and subversion into more the one package.</p>
 <p>You will need to find all the packages that give you the options listed above.</p>
 
 <h3>Building on win32</h3>
-<p>These instructions assume you have Microsoft Visual C++ 6.0 to compile the code
-and <a href="http://www.jrsoftware.org/">INNO</a> 4.0.10 to create the installation kit.</p>
-<p>Note: You must build with MSVC 6.0 as python 2.3 and earlier was built with that version.</p>
-<p>Note: You must build with MSVC 2003.NET for python 2.4 or Python 2.5.</p>
-<p>Note: You must build with MSVC 2008 (9.0) for Python 2.6 or later and python 3.0 or later.</p>
+
+<p>PYSVN sources have been updated to build on Windows 7 64bit version.
+Expect issues on older windows and 32but windows.</p>
+
+<p>These instructions assume you have Microsoft Visual C++ 2008 (9.0) to compile the code
+and <a href="http://www.jrsoftware.org/">INNO</a> 5 to create the installation kit.</p>
+
+<p>You must build with MSVC 2008 (9.0) for Python 2.6 or later and python 3.0 or later.</p>
 
 <ol>
-<li>Build subversion (tested with SVN 1.5.6 and svn 1.6.15)</li>
+<li>Build subversion (tested with and svn 1.7.1)</li>
 <li>Fetch and expand the pysvn source code into <em>extdir</em></li>
-<li>Expand pycxx-6.2.1.tar.gz into <em>extdir</em>\Import if not using a source kit</li>
+<li>Expand pycxx-6.2.4.tar.gz into <em>extdir</em>\Import if not using a source kit</li>
 <li>Edit Builder\builder_custom_init.cmd to match the locations of the sources.</li>
 <li><code>cd Builder</code></li>
 <li><code>builder_custom_init.cmd</code></li>
-<li><code>nmake -f win32.mak build</code></li>
+<li><code>cd ..\Source</code>
+<li><code>python setup.py configure ...</code> (add any configure options required to make it find the required libraries).</li>
+<li><code>nmake</code></li>
+<li><code>cd ..\Test</code></li>
+<li><code>nmake</code></li>
+<li><code>cd ..\Kit\Win32-1.7</code></li>
+<li><code>nmake</code></li>
 </ol>
 
 <p>To install the built kit</p>
@@ -65,9 +74,9 @@ and <a href="http://www.jrsoftware.org/">INNO</a> 4.0.10 to create the installat
 <li>Install subversion.
 <br />When installing from packages you will need to install the <i>devel</i> packages as well. For example on Fedora/Redhat subversion-devel, apr-devel, apr-util-devel and their dependancies.</li>
 <li>Get the pysvn source code</li>
-<li>For Python 2 or Python 3 builds: <code>tar xzf pycxx-6.2.1.tar.gz</code> into <em>extdir</em>/Import if not using a source kit</li>
+<li>For Python 2 or Python 3 builds: <code>tar xzf pycxx-6.2.4.tar.gz</code> into <em>extdir</em>/Import if not using a source kit</li>
 <li><code>cd Source</code></li>
-<li>For Python 2 builds: backport the PySVN code using <code>python setup.py backport</code></li>
+<li>For Python 2.6 or earlier builds: backport the PySVN code using <code>python setup.py backport</code></li>
 <li>Create the Makefile using <code>python setup.py configure</code></li>
 <li><code>make</code></li>
 <li><code>cd Tests</code></li>

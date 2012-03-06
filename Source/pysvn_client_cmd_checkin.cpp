@@ -202,6 +202,7 @@ Py::Object pysvn_client::cmd_checkout( const Py::Tuple &a_args, const Py::Dict &
     svn_revnum_t revnum = 0;
     try
     {
+        std::string norm_url( svnNormalisedIfPath( url, pool ) );
         std::string norm_path( svnNormalisedIfPath( path, pool ) );
 
         checkThreadPermission();
@@ -214,7 +215,7 @@ Py::Object pysvn_client::cmd_checkout( const Py::Tuple &a_args, const Py::Dict &
         svn_error_t *error = svn_client_checkout3
             (
             &revnum,
-            url.c_str(),
+            norm_url.c_str(),
             norm_path.c_str(),
             &peg_revision,
             &revision,
@@ -228,7 +229,7 @@ Py::Object pysvn_client::cmd_checkout( const Py::Tuple &a_args, const Py::Dict &
         svn_error_t *error = svn_client_checkout2
             (
             &revnum,
-            url.c_str(),
+            norm_url.c_str(),
             norm_path.c_str(),
             &peg_revision,
             &revision,
@@ -241,7 +242,7 @@ Py::Object pysvn_client::cmd_checkout( const Py::Tuple &a_args, const Py::Dict &
         svn_error_t *error = svn_client_checkout
             (
             &revnum,
-            url.c_str(),
+            norm_url.c_str(),
             norm_path.c_str(),
             &revision,
             recurse,
@@ -462,3 +463,54 @@ Py::Object pysvn_client::cmd_update( const Py::Tuple &a_args, const Py::Dict &a_
     return revnumListToObject( result_revs, pool );
 }
 
+#if defined( PYSVN_HAS_CLIENT_UPGRADE )
+Py::Object pysvn_client::cmd_upgrade( const Py::Tuple &a_args, const Py::Dict &a_kws )
+{
+    static argument_description args_desc[] =
+    {
+    { true,  name_path },
+    { false, NULL }
+    };
+    FunctionArguments args( "upgrade", args_desc, a_args, a_kws );
+    args.check();
+
+    SvnPool pool( m_context );
+
+    std::string type_error_message;
+    try
+    {
+        type_error_message = "expecting string for path keyword arg";
+        std::string path( args.getUtf8String( name_path ) );
+        std::string norm_path( svnNormalisedIfPath( path, pool ) );
+
+        try
+        {
+            checkThreadPermission();
+
+            PythonAllowThreads permission( m_context );
+
+            svn_error_t *error = svn_client_upgrade(
+                norm_path.c_str(),
+                m_context,
+                pool
+                );
+            permission.allowThisThread();
+            if( error != NULL )
+                throw SvnException( error );
+        }
+        catch( SvnException &e )
+        {
+            // use callback error over ClientException
+            m_context.checkForError( m_module.client_error );
+
+            throw_client_error( e );
+        }
+    }
+    catch( Py::TypeError & )
+    {
+        throw Py::TypeError( type_error_message );
+    }
+
+    return Py::None();
+}
+#endif

@@ -20,12 +20,21 @@
 #error PyCXX version 5.3.5 is required
 #endif
 
-
+#include <svn_version.h>
 #include <svn_client.h>
+#include <svn_dirent_uri.h>
 #include <svn_fs.h>
 #include <svn_repos.h>
 #include <apr_xlate.h>
 #include <string>
+
+#if !defined( SVN_VER_MAJOR )
+#error "SVN_VER_MAJOR not defined"
+#endif
+
+#if !defined( SVN_VER_MINOR )
+#error "SVN_VER_MINOR not defined"
+#endif
 
 // SVN 1.1 or later
 #if (SVN_VER_MAJOR == 1 && SVN_VER_MINOR >= 1) || SVN_VER_MAJOR > 1
@@ -159,6 +168,42 @@
 #define PYSVN_HAS_SVN_WC_CONFLICT_RESULT_T__SAVE_MERGED
 
 #endif
+
+// SVN 1.7 or later
+#if (SVN_VER_MAJOR == 1 && SVN_VER_MINOR >= 7) || SVN_VER_MAJOR > 1
+#define PYSVN_HAS_SVN_1_7
+#define PYSVN_HAS_CLIENT_BLAME5 QQQ
+#define PYSVN_HAS_CLIENT_COMMIT5 QQQ
+#define PYSVN_HAS_CLIENT_COPY6 QQQ
+#define PYSVN_HAS_CLIENT_DELETE4 QQQ
+#define PYSVN_HAS_CLIENT_DIFF5 QQQ
+#define PYSVN_HAS_CLIENT_DIFF_PEG5 QQQ
+#define PYSVN_HAS_CLIENT_EXPORT5 QQQ
+#define PYSVN_HAS_CLIENT_GET_WC_ROOT QQQ
+#define PYSVN_HAS_CLIENT_IMPORT4 QQQ
+#define PYSVN_HAS_CLIENT_INFO2_T QQQ
+#define PYSVN_HAS_CLIENT_INFO3 QQQ
+#define PYSVN_HAS_CLIENT_INFO_RECEIVER2_T QQQ
+#define PYSVN_HAS_CLIENT_MERGE4 QQQ
+#define PYSVN_HAS_CLIENT_MERGEINFO_LOG QQQ
+#define PYSVN_HAS_CLIENT_MERGE_PEG4 QQQ
+#define PYSVN_HAS_CLIENT_MIN_MAX_REVISIONS QQQ
+#define PYSVN_HAS_CLIENT_MKDIR4 QQQ
+#define PYSVN_HAS_CLIENT_MOVE6 QQQ
+#define PYSVN_HAS_CLIENT_PATCH QQQ
+#define PYSVN_HAS_CLIENT_PATCH_FUNC_T QQQ
+#define PYSVN_HAS_CLIENT_PROPGET4 QQQ
+#define PYSVN_HAS_CLIENT_PROPSET_LOCAL QQQ
+#define PYSVN_HAS_CLIENT_PROPSET_REMOTE QQQ
+#define PYSVN_HAS_CLIENT_RELOCATE2 QQQ
+#define PYSVN_HAS_CLIENT_STATUS5 QQQ
+#define PYSVN_HAS_CLIENT_SWITCH3 QQQ
+#define PYSVN_HAS_CLIENT_UPDATE4 QQQ
+#define PYSVN_HAS_CLIENT_UPGRADE QQQ
+#define PYSVN_HAS_CLIENT_URL_FROM_PATH2 QQQ
+#define PYSVN_HAS_CLIENT_UUID_FROM_PATH2 QQQ
+#endif
+
 
 #if defined( PYSVN_HAS_CLIENT_STATUS3 )
 typedef svn_wc_status2_t pysvn_wc_status_t;

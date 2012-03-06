@@ -860,7 +860,6 @@ void pysvn_client::init_type()
     add_keyword_method("get_store_passwords", &pysvn_client::get_store_passwords, pysvn_client_get_store_passwords_doc );
     add_keyword_method("import_", &pysvn_client::cmd_import, pysvn_client_import__doc );
     add_keyword_method("info", &pysvn_client::cmd_info, pysvn_client_info_doc );
-
 #if defined( PYSVN_HAS_CLIENT_INFO )
     add_keyword_method("info2", &pysvn_client::cmd_info2, pysvn_client_info2_doc );
 #endif
@@ -922,6 +921,9 @@ void pysvn_client::init_type()
     add_keyword_method("switch", &pysvn_client::cmd_switch, pysvn_client_switch_doc );
 #if defined( PYSVN_HAS_CLIENT_LOCK )
     add_keyword_method("unlock", &pysvn_client::cmd_unlock, pysvn_client_unlock_doc );
+#endif
+#if defined( PYSVN_HAS_CLIENT_UPGRADE )
+    add_keyword_method("upgrade", &pysvn_client::cmd_upgrade, pysvn_client_upgrade_doc );
 #endif
     add_keyword_method("update", &pysvn_client::cmd_update, pysvn_client_update_doc );
 }

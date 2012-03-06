@@ -1,11 +1,11 @@
-WorkDir: C:\BuildRoot\Win32-MSVC90-1.6.5\pysvn\py31
-PYTHON: c:\python31\python.exe
+WorkDir: C:\wc\svn\pysvn\Extension
+PYTHON: c:\python32.win32\python.exe
 Username: barry
-Info: PYSVN CMD c:\python31\python.exe C:\BuildRoot\Win32-MSVC90-1.6.5\pysvn\py31\Examples\Client\svn_cmd.py --pysvn-testing 01.03.00 --config-dir b:\configdir
+Info: PYSVN CMD c:\python32.win32\python.exe C:\wc\svn\pysvn\Extension\Examples\Client\svn_cmd.py --pysvn-testing 01.03.00 --config-dir b:\configdir
 
 Info: CMD mkdir testroot-07
 
-Info: CMD subst b: C:\BuildRoot\Win32-MSVC90-1.6.5\pysvn\py31\Tests\testroot-07
+Info: CMD subst b: C:\wc\svn\pysvn\Extension\Tests\testroot-07
 
 Info: CMD cd /d b:\
 
@@ -30,7 +30,7 @@ Info: PYSVN CMD add file_a1.txt
 A file_a1.txt
 
 Info: PYSVN CMD checkin -m "commit added files"
-A B:/wc1/test/file_a1.txt
+A b:/wc1/test/file_a1.txt
 Revision 3
 Info: Create File file_a2.txt - test add file 2     
 
@@ -38,7 +38,7 @@ Info: PYSVN CMD add file_a2.txt
 A file_a2.txt
 
 Info: PYSVN CMD checkin -m "commit added files"
-A B:/wc1/test/file_a2.txt
+A b:/wc1/test/file_a2.txt
 Revision 4
 Info: Create File file_b1.txt - test add file 1     
 
@@ -46,7 +46,7 @@ Info: PYSVN CMD add file_b1.txt
 A file_b1.txt
 
 Info: PYSVN CMD checkin -m "commit added files"
-A B:/wc1/test/file_b1.txt
+A b:/wc1/test/file_b1.txt
 Revision 5
 Info: Create File file_b2.txt - test add file 2     
 
@@ -75,15 +75,15 @@ Info: Error: 'Operation does not support multiple sources'
 Info: Code: 195014, Message: 'Operation does not support multiple sources'
 Info: running test_07_changelist
 After add_to_changelist show all
+   changelist-one file_a1.txt
    changelist-two file_a2.txt
    changelist-one file_b1.txt
    changelist-two file_b2.txt
-   changelist-one file_a1.txt
 After add_to_changelist show changelist-two
    changelist-two file_a2.txt
    changelist-two file_b2.txt
 After remove_from_changelists all changelist-two show all
-   changelist-one file_b1.txt
    changelist-one file_a1.txt
+   changelist-one file_b1.txt
 After remove_from_changelists all show all
    changelist-one file_b1.txt

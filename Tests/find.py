@@ -11,7 +11,7 @@ all_files = []
 
 def walk( dirname, all_files ):
     for filename in os.listdir( dirname ):
-        if filename not in ['wcprops', 'empty-file', 'README.txt']:
+        if filename not in ['.svn']:
             filename = os.path.join( dirname, filename )
             if os.path.isdir( filename ):    
                 walk( filename, all_files )

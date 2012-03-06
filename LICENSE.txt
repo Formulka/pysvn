@@ -1,5 +1,5 @@
 =================================================================
-Copyright (C) 2003-2009 Barry A. Scott. All rights reserved.
+Copyright (C) 2003-2012 Barry A. Scott. All rights reserved.
 
 =================================================================
 The Apache Software License, Version 1.1

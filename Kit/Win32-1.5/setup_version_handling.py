@@ -35,10 +35,10 @@ f.close()
 
 f = open( 'tmp\\pysvn-branded.iss', 'w' )
 branding = {
-	'py_maj': py_maj,
-	'py_min': py_min,
-	'pysvn_version_string': pysvn_version_string,
-	}
+        'py_maj': py_maj,
+        'py_min': py_min,
+        'pysvn_version_string': pysvn_version_string,
+        }
 print( 'Info: %r' % (branding,) )
 f.write( pysvn_iss_text % branding )
 f.close()
@@ -61,10 +61,10 @@ f.close()
 
 f = open( 'tmp\\msvc_system_files.iss', 'w' )
 branding = {
-	'py_maj': py_maj,
-	'py_min': py_min,
-	'pysvn_version_string': pysvn_version_string,
-	}
+        'py_maj': py_maj,
+        'py_min': py_min,
+        'pysvn_version_string': pysvn_version_string,
+        }
 print( 'Info: %r' % (branding,) )
 f.write( pysvn_iss_text % branding )
 f.close()
@@ -72,5 +72,5 @@ f.close()
 print( 'Info: Create setup_copy.cmd' )
 f = open( 'tmp\\setup_copy.cmd', 'w' )
 f.write( 'copy tmp\\Output\\setup.exe tmp\\Output\\py%d%d-pysvn-svn%s-%s.exe\n' %
-	(py_maj, py_min, svn_version_package_string, pysvn_version_string) )
+        (py_maj, py_min, svn_version_package_string, pysvn_version_string) )
 f.close()

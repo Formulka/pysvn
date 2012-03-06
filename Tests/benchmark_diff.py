@@ -1,6 +1,6 @@
 '''
  ====================================================================
- Copyright (c) 2005-2009 Barry A Scott.  All rights reserved.
+ Copyright (c) 2005-2011 Barry A Scott.  All rights reserved.
 
  This software is licensed as described in the file LICENSE.txt,
  which you should have received as part of this distribution.
@@ -77,17 +77,21 @@ class ReplaceDirtInString:
         dateUnixLs1_re = re.compile(r'[JFMASOND][a-z][a-z] \d+ \d\d:\d\d')
         dateUnixLs2_re = re.compile(r'[JFMASOND][a-z][a-z]  \d\d\d\d')
         uuid_re = re.compile(r'[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}')
+        pristine_re = re.compile( r'pristine[/\\][0-9a-z]{2}[/\\][0-9a-z]{40}' )
         checksum_re = re.compile(r'[0-9a-z]{32}')
+        tmpSvnFile_re = re.compile(r'[/\\].svn[/\\]tmp[/\\]tempfile.\d+.tmp|[/\\].svn[/\\]tmp[/\\]svn-[a-zA-Z0-9]+')
+
 
         self.replacement_list = [
+                        (pristine_re,                  'pristine/<pristine-file>'),
                         (dateAlphaNumeric_re,          '<alpha-date-and-time>'),
                         (dateNumeric_re,               '<numeric-date-and-time>'),
                         (uuid_re,                      '<UUID>'),
                         (checksum_re,                  '<checksum>'),
                         (dateUnixLs1_re,               '<ls-date-and-time>'),
                         (dateUnixLs2_re,               '<ls-date-and-time>'),
+                        (tmpSvnFile_re,                '/.svn/tmp/<svn-tempfile>'),
                         ]
-
 
         if self.workdir:
             workdir_re1 = LiteralCaseBlindSearch( self.workdir )
@@ -127,14 +131,15 @@ class ReplaceDirtInString:
         return [self.replace( line ) for line in self.lines_list]
 
     def replace( self, line ):
-        if _debug: print( 'Processing: %s' % line )
+        if _debug: print( 'Processing: %r' % (line,) )
         for re_expr, replacement_text in self.replacement_list:
             while 1:
-                if _debug: print( '...trying: %s' % replacement_text )
+                if _debug: print( '...trying: %r' % (replacement_text,) )
                 match = re_expr.search( line )
                 if match == None:
                     break
                 line = line[0:match.start()] + replacement_text + line[match.end():]
+                if _debug: print( '...update line: %r' % (line,) )
         return line
 
 
